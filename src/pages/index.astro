@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Testimonials from '../components/Testimonials.astro';
+import '../styles/global.css';
+
+const work = [
+  {
+    title: 'ProFlow Plumbing — Full Demo Site',
+    description: 'Complete local business website with emergency repair, installations, maintenance plans, reviews, and contact form. Click through every page — it\'s fully functional.',
+    image: '/work/plumbing.svg',
+    imageAlt: 'ProFlow Plumbing demo site - full website mockup',
+    tags: ['Astro', 'Tailwind', 'Formspree', 'Local SEO', 'Schema.org'],
+    liveUrl: '/demo/plumbing',
+    featured: true,
+    isDemo: true,
+  },
+];
+
+const testimonials = [
+  {
+    initials: 'S.M.',
+    text: 'Our phone hasn\'t stopped ringing since the new site launched. Went from 2-3 calls a week to 15+ daily. The ROI is insane.',
+    rating: 5,
+  },
+  {
+    initials: 'M.C.',
+    text: 'Finally a developer who understands local business. He didn\'t just build a pretty site — he built a lead machine. Emergency calls doubled month one.',
+    rating: 5,
+  },
+  {
+    initials: 'A.T.',
+    text: 'The insurance claim landing page paid for itself in the first week. Closed $47k in jobs from organic traffic alone. Highly recommend.',
+    rating: 5,
+  },
+  {
+    initials: 'J.R.',
+    text: 'Clean, fast, and it just works. Explained everything in plain English, no tech jargon. Emergency calls go straight to my phone now.',
+    rating: 5,
+  },
+  {
+    initials: 'L.P.',
+    text: 'Had a Wix site that loaded in 8 seconds. Rebuilt in Astro — now 1.2s. Google rankings jumped from page 3 to top 3 for main keywords.',
+    rating: 5,
+  },
+  {
+    initials: 'D.K.',
+    text: 'The maintenance plan saves me hours every month. Handles updates, backups, security — I just focus on customers. Best $100/mo I spend.',
+    rating: 5,
+  },
+];
+---
+
+<Layout title="Joey Viola | Full-Stack Developer" description="Building fast, accessible websites for local businesses. Astro, Tailwind, WordPress — no bloat, just results.">
+  <Header currentPage="home" />
+
+  <main>
+    <Hero
+      name="Joey Viola"
+      tagline="I build fast, accessible websites that help local businesses get more customers. No templates, no bloat — just results."
+      ctaText="Start a Project"
+      ctaHref="#contact"
+      secondaryCtaText="View Demo Site"
+      secondaryCtaHref="/demo/plumbing"
+    />
+
+    <section id="work" class="section" aria-labelledby="work-heading">
+      <div class="container">
+        <header class="text-center max-w-2xl mx-auto mb-12">
+          <h2 id="work-heading" class="heading-2 text-slate-900 mb-4">
+            Featured Project
+          </h2>
+          <p class="text-body">
+            One complete, clickable demo site showcasing what I deliver for local service businesses.
+            <span class="text-brand-600 font-medium"> (Demo site — replace with your real client work)</span>
+          </p>
+          <p class="text-body mt-4 text-brand-600 font-medium">
+            💡 Every site we build is 100% customized — colors, layout, copy, features, and structure tailored to YOUR brand, services, and customers. No two sites look the same.
+          </p>
+        </header>
+
+        <div class="grid gap-8 lg:grid-cols-2">
+          {work.map((project) => (
+            <WorkCard
+              title={project.title}
+              description={project.description}
+              image={project.image}
+              imageAlt={project.imageAlt}
+              tags={project.tags}
+              liveUrl={project.liveUrl}
+              featured={project.featured}
+              isDemo={project.isDemo}
+            />
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/demo/plumbing" class="btn-primary inline-flex text-lg px-8 py-4">
+            Explore Full Demo Site
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Services />
+
+    <Testimonials testimonials={testimonials} />
+
+    <About
+      name="Joey Viola"
+      bio="I'm a full-stack developer specializing in building high-performance websites for local service businesses. After years of seeing businesses waste money on bloated WordPress themes and slow page builders, I started building custom sites that load in under 2 seconds, rank on Google, and actually convert visitors into paying customers.
+
+When I'm not coding, you'll find me optimizing Core Web Vitals for fun, contributing to open source, or helping other devs level up their freelance game."
+      skills={['Astro', 'Next.js', 'Tailwind CSS', 'TypeScript', 'WordPress', 'Sanity CMS', 'Vercel', 'Netlify', 'Git', 'WCAG 2.1']}
+    />
+
+    <Contact email="jviola123459@gmail.com" />
+  </main>
+
+  <Footer />
+</Layout>

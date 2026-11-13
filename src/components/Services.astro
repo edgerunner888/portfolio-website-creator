@@ -1,0 +1,108 @@
+---
+interface Service {
+  title: string;
+  description: string;
+  icon: 'code' | 'design' | 'speed' | 'seo' | 'mobile' | 'support';
+  features: string[];
+}
+const services: Service[] = [
+  {
+    title: 'Custom Website Development',
+    description: 'Fast, accessible websites built with modern tech — no bloated themes or page builders.',
+    icon: 'code',
+    features: ['Astro/Next.js + Tailwind', 'CMS integration (WordPress, Sanity)', 'E-commerce ready', 'WCAG 2.1 AA accessible'],
+  },
+  {
+    title: 'Website Redesign & Rebuild',
+    description: 'Transform your outdated site into a conversion machine that actually brings in leads.',
+    icon: 'design',
+    features: ['Conversion-focused design', 'Mobile-first responsive', 'Brand identity alignment', '30-day launch guarantee'],
+  },
+  {
+    title: 'Performance Optimization',
+    description: 'Make your existing site load in under 2 seconds. Core Web Vitals passing guaranteed.',
+    icon: 'speed',
+    features: ['Core Web Vitals optimization', 'Image optimization & CDN', 'Code splitting & caching', 'Lighthouse 90+ scores'],
+  },
+  {
+    title: 'Technical SEO Setup',
+    description: 'Get found by customers searching for your services. Schema, sitemaps, speed, structure.',
+    icon: 'seo',
+    features: ['Schema.org markup', 'XML sitemaps & robots.txt', 'Meta optimization', 'Local SEO ready'],
+  },
+  {
+    title: 'Mobile-First Responsive',
+    description: 'Over 60% of traffic is mobile. Your site works perfectly on every screen size.',
+    icon: 'mobile',
+    features: ['Fluid typography & spacing', 'Touch-friendly interactions', 'Progressive enhancement', 'Cross-browser tested'],
+  },
+  {
+    title: 'Ongoing Maintenance Plans',
+    description: 'Sleep easy knowing your site is secure, backed up, and updated. From $100/mo.',
+    icon: 'support',
+    features: ['Weekly backups & monitoring', 'Security updates & patches', 'Content updates included', 'Priority support'],
+  },
+];
+
+function getIcon(name: string) {
+  switch (name) {
+    case 'code':
+      return `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`;
+    case 'design':
+      return `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17a.067.067 0 01-.02 0c-.087.026-.178.05-.27.05h-3.973c-.447 0-.82-.35-.9-.789l-.46-2.527a.606.606 0 01.483-.853h7.61a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343" /></svg>`;
+    case 'speed':
+      return `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`;
+    case 'seo':
+      return `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>`;
+    case 'mobile':
+      return `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>`;
+    case 'support':
+      return `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`;
+    default:
+      return '';
+  }
+}
+---
+
+<section id="services" class="section bg-slate-50" aria-labelledby="services-heading">
+  <div class="container">
+    <header class="text-center max-w-2xl mx-auto mb-16">
+      <h2 id="services-heading" class="heading-2 text-slate-900 mb-4">
+        What I Do
+      </h2>
+      <p class="text-body">
+        I build websites that work — fast, accessible, and designed to convert visitors into customers.
+        No templates, no bloat, no surprises.
+      </p>
+    </header>
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <article class="card p-6 h-full">
+          <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 mb-4" set:html={getIcon(service.icon)} />
+          <h3 class="heading-3 text-slate-900 mb-2">{service.title}</h3>
+          <p class="text-body mb-4">{service.description}</p>
+          <ul class="space-y-2" role="list">
+            {service.features.map((feature) => (
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-brand-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="#contact" class="btn-primary inline-flex">
+        Start a Project
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

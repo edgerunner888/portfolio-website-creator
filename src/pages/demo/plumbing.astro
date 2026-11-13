@@ -1,0 +1,171 @@
+---
+import DemoLayout from '../../layouts/DemoLayout.astro';
+import DemoHeader from '../../components/DemoHeader.astro';
+import DemoHero from '../../components/DemoHero.astro';
+import DemoServices from '../../components/DemoServices.astro';
+import DemoAbout from '../../components/DemoAbout.astro';
+import DemoReviews from '../../components/DemoReviews.astro';
+import DemoContact from '../../components/DemoContact.astro';
+import DemoFooter from '../../components/DemoFooter.astro';
+
+const config = {
+  businessName: 'ProFlow Plumbing',
+  tagline: 'Fast, reliable plumbing services for homeowners and businesses. Emergency repairs, installations, and preventive maintenance.',
+  phone: '(555) 234-5678',
+  phoneHref: '5552345678',
+  email: 'info@proflowplumbing.com',
+  address: '456 Oak Avenue, Springfield, IL 62701',
+  licenseNumber: 'PL-12345',
+  yearsInBusiness: 15,
+  description: 'ProFlow Plumbing has been serving Springfield and the surrounding communities for over 15 years. We\'re a family-owned business built on honesty, quality workmanship, and fair pricing. Every technician is licensed, background-checked, and trained on the latest industry standards. We don\'t just fix pipes — we build lasting relationships with our customers.',
+  stats: [
+    { label: 'Years in Business', value: '15+' },
+    { label: 'Happy Customers', value: '2,500+' },
+    { label: '5-Star Reviews', value: '340+' },
+    { label: 'Emergency Response', value: '< 60 min' },
+  ],
+  primaryCtaText: 'Get Free Estimate',
+  primaryCtaHref: '#contact',
+  secondaryCtaText: 'Emergency Service',
+  secondaryCtaHref: 'tel:5552345678',
+  socialLinks: [
+    { href: 'https://facebook.com/proflowplumbing', label: 'Facebook', icon: 'facebook' },
+    { href: 'https://instagram.com/proflowplumbing', label: 'Instagram', icon: 'instagram' },
+    { href: 'https://maps.google.com/?q=proflow+plumbing', label: 'Google Maps', icon: 'google' },
+  ],
+};
+
+const services = [
+  {
+    title: 'Emergency Repair',
+    description: '24/7 emergency service when you need it most. We arrive fast and fix it right the first time.',
+    icon: 'emergency',
+    features: ['24/7 availability', '1-hour response time', 'Upfront pricing', 'Fully stocked trucks'],
+    ctaText: 'Call Emergency Line',
+    ctaHref: 'tel:5552345678',
+  },
+  {
+    title: 'Installation & Replacement',
+    description: 'Expert installation of new systems. We help you choose the right equipment for your needs and budget.',
+    icon: 'install',
+    features: ['Free on-site estimates', 'Top-brand equipment', 'Financing available', '1-year labor warranty'],
+  },
+  {
+    title: 'Preventive Maintenance',
+    description: 'Extend equipment life and prevent costly breakdowns with our comprehensive maintenance plans.',
+    icon: 'maintenance',
+    features: ['Bi-annual tune-ups', 'Priority scheduling', '15% off repairs', 'No overtime charges'],
+    ctaText: 'View Plans',
+    ctaHref: '#contact',
+  },
+  {
+    title: 'Inspection & Diagnostics',
+    description: 'Thorough system inspections with detailed reports. Know exactly what you\'re dealing with before you decide.',
+    icon: 'inspect',
+    features: ['Video inspection', 'Digital reports', 'Photo documentation', 'Honest recommendations'],
+  },
+];
+
+const reviews = [
+  {
+    initials: 'S.M.',
+    rating: 5,
+    text: 'Called at 10pm for an emergency and they were here within 45 minutes. Fixed the issue, explained everything clearly, and the price was exactly what they quoted. Highly recommend!',
+    date: '2 weeks ago',
+    service: 'Emergency Repair',
+  },
+  {
+    initials: 'J.R.',
+    rating: 5,
+    text: 'Professional, punctual, and fair pricing. They installed our new system last month and even followed up to make sure everything was working perfectly. Will use again for maintenance.',
+    date: '1 month ago',
+    service: 'Installation',
+  },
+  {
+    initials: 'L.K.',
+    rating: 5,
+    text: 'Best experience I\'ve had with a contractor. They showed up on time, wore shoe covers, cleaned up after themselves, and took the time to explain the maintenance plan options. No pressure sales.',
+    date: '3 weeks ago',
+    service: 'Maintenance',
+  },
+  {
+    initials: 'M.T.',
+    rating: 5,
+    text: 'Honest assessment - they told me I didn\'t need a full replacement, just a repair. Saved me thousands. Rare to find that kind of integrity these days.',
+    date: '1 month ago',
+    service: 'Inspection',
+  },
+  {
+    initials: 'A.P.',
+    rating: 5,
+    text: 'Signed up for their annual maintenance plan. Two visits a year, priority service, and discounts on repairs. Already paid for itself with one service call. Great value.',
+    date: '2 months ago',
+    service: 'Maintenance Plan',
+  },
+  {
+    initials: 'R.H.',
+    rating: 5,
+    text: 'Fast, friendly, and fair. Our AC went out during the hottest week of summer and they had us cool again same day. Technician was knowledgeable and respectful of our home.',
+    date: '3 weeks ago',
+    service: 'Emergency Repair',
+  },
+];
+---
+
+<DemoLayout
+  title={`Demo: ${config.businessName} | Professional Plumbing Services`}
+  description={`${config.businessName} - ${config.tagline} Licensed, insured, and locally owned. Free estimates. 24/7 emergency service.`}
+  canonicalURL="/demo/plumbing"
+  businessName={config.businessName}
+  phone={config.phone}
+  email={config.email}
+  address={config.address}
+>
+  <DemoHeader
+    businessName={config.businessName}
+    phone={config.phone}
+    phoneHref={config.phoneHref}
+  />
+
+  <main>
+    <DemoHero
+      businessName={config.businessName}
+      tagline={config.tagline}
+      primaryCtaText={config.primaryCtaText}
+      primaryCtaHref={config.primaryCtaHref}
+      secondaryCtaText={config.secondaryCtaText}
+      secondaryCtaHref={config.secondaryCtaHref}
+      phone={config.phone}
+      phoneHref={config.phoneHref}
+    />
+
+    <DemoServices services={services} />
+
+    <DemoAbout
+      businessName={config.businessName}
+      description={config.description}
+      stats={config.stats}
+      yearsInBusiness={config.yearsInBusiness}
+    />
+
+    <DemoReviews reviews={reviews} />
+
+    <DemoContact
+      businessName={config.businessName}
+      phone={config.phone}
+      phoneHref={config.phoneHref}
+      email={config.email}
+      address={config.address}
+    />
+  </main>
+
+  <DemoFooter
+    businessName={config.businessName}
+    phone={config.phone}
+    phoneHref={config.phoneHref}
+    email={config.email}
+    address={config.address}
+    licenseNumber={config.licenseNumber}
+    socialLinks={config.socialLinks}
+  />
+</DemoLayout>

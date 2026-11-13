@@ -1,0 +1,166 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonicalURL?: string;
+  businessName?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+}
+
+const {
+  title,
+  description = 'Professional local services. Licensed, insured, and trusted by the community.',
+  canonicalURL,
+  businessName = 'Business Name',
+  phone = '(555) 000-0000',
+  email = 'info@business.com',
+  address = '123 Main St, City, State 12345',
+} = Astro.props;
+
+const site = 'https://yourname.dev';
+const url = canonicalURL ? `${site}${canonicalURL}` : site;
+const ogImage = '/og-image.jpg';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+    <meta property="og:site_name" content={businessName} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${site}${ogImage}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site}${ogImage}`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" /></noscript>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{businessName}",
+        "image": "{`${site}${ogImage}`}",
+        "telephone": "{phone}",
+        "email": "{email}",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "{address.split(',')[0]}",
+          "addressLocality": "{address.split(',')[1]?.trim()}",
+          "addressRegion": "{address.split(',')[2]?.trim().split(' ')[0]}",
+          "postalCode": "{address.split(',')[2]?.trim().split(' ')[1]}",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "0.000000",
+          "longitude": "0.000000"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "15:00"
+          }
+        ],
+        "priceRange": "$$",
+        "paymentAccepted": "Cash, Credit Card, Check",
+        "currenciesAccepted": "USD"
+      }
+    </script>
+
+    <style is:global>
+      /* Demo site specific styles - different from portfolio */
+      :root {
+        --demo-primary: #ea580c;
+        --demo-primary-dark: #c2410c;
+        --demo-primary-light: #fed7aa;
+        --demo-secondary: #0f766e;
+        --demo-secondary-light: #ccfbf1;
+        --demo-dark: #1c1917;
+        --demo-light: #fafaf9;
+      }
+
+      .demo-container {
+        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+      }
+
+      .demo-section {
+        @apply py-16 sm:py-24 lg:py-32;
+      }
+
+      .demo-heading-1 {
+        @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight font-[Poppins];
+      }
+
+      .demo-heading-2 {
+        @apply text-3xl sm:text-4xl font-bold tracking-tight font-[Poppins];
+      }
+
+      .demo-heading-3 {
+        @apply text-2xl sm:text-3xl font-semibold tracking-tight font-[Poppins];
+      }
+
+      .demo-body {
+        @apply text-base sm:text-lg text-stone-600 leading-relaxed;
+      }
+
+      .demo-btn {
+        @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+      }
+
+      .demo-btn-primary {
+        @apply demo-btn bg-orange-600 text-white hover:bg-orange-700 focus-visible:ring-orange-500 shadow-lg hover:shadow-xl;
+      }
+
+      .demo-btn-secondary {
+        @apply demo-btn bg-stone-900 text-white hover:bg-stone-800 focus-visible:ring-stone-700;
+      }
+
+      .demo-btn-outline {
+        @apply demo-btn border-2 border-stone-300 text-stone-700 hover:bg-stone-50 focus-visible:ring-stone-400;
+      }
+
+      .demo-card {
+        @apply bg-white rounded-2xl border border-stone-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+      }
+
+      .demo-trust-badge {
+        @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-stone-600 bg-stone-100 rounded-full border border-stone-200;
+      }
+
+      .demo-input {
+        @apply w-full px-4 py-3 text-stone-900 bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-shadow;
+      }
+
+      .demo-label {
+        @apply block text-sm font-medium text-stone-700 mb-2;
+      }
+    </style>
+  </head>
+  <body class="font-[Inter] text-stone-900 bg-white antialiased">
+    <slot />
+  </body>
+</html>

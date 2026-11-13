@@ -1,0 +1,28 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#f0fdfa"/>
+  <rect x="50" y="50" width="320" height="500" rx="12" fill="white" stroke="#14b8a6" stroke-width="2"/>
+  <rect x="50" y="50" width="320" height="60" rx="12" fill="#14b8a6"/>
+  <text x="210" y="88" text-anchor="middle" fill="white" font-family="system-ui" font-size="18" font-weight="bold">Torres Roofing</text>
+  <rect x="70" y="130" width="280" height="180" rx="8" fill="#99f6e4"/>
+  <text x="210" y="200" text-anchor="middle" fill="#0f766e" font-family="system-ui" font-size="16">📱 Mobile View</text>
+  <rect x="70" y="330" width="280" height="50" rx="8" fill="#0d9488"/>
+  <text x="210" y="363" text-anchor="middle" fill="white" font-family="system-ui" font-size="14" font-weight="bold">Insurance Claims</text>
+  <rect x="70" y="400" width="130" height="50" rx="8" fill="#14b8a6"/>
+  <text x="135" y="433" text-anchor="middle" fill="white" font-family="system-ui" font-size="14" font-weight="bold">Free Inspection</text>
+  <rect x="220" y="400" width="130" height="50" rx="8" fill="white" stroke="#14b8a6" stroke-width="2"/>
+  <text x="285" y="433" text-anchor="middle" fill="#14b8a6" font-family="system-ui" font-size="14" font-weight="bold">Project Gallery</text>
+  <rect x="70" y="470" width="280" height="60" rx="8" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/>
+  <text x="210" y="505" text-anchor="middle" fill="#0f766e" font-family="system-ui" font-size="14">⭐⭐⭐⭐⭐ 220+ Reviews</text>
+
+  <rect x="430" y="50" width="320" height="500" rx="12" fill="white" stroke="#14b8a6" stroke-width="2"/>
+  <rect x="430" y="50" width="320" height="60" rx="12" fill="#14b8a6"/>
+  <text x="590" y="88" text-anchor="middle" fill="white" font-family="system-ui" font-size="18" font-weight="bold">Torres Roofing</text>
+  <rect x="450" y="130" width="280" height="280" rx="8" fill="#99f6e4"/>
+  <text x="590" y="250" text-anchor="middle" fill="#0f766e" font-family="system-ui" font-size="20">💻 Desktop View</text>
+  <text x="590" y="280" text-anchor="middle" fill="#0f766e" font-family="system-ui" font-size="14">Claim Landing Page • Gallery</text>
+  <rect x="450" y="430" width="280" height="100" rx="8" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/>
+  <text x="590" y="470" text-anchor="middle" fill="#0f766e" font-family="system-ui" font-size="14">Built with Next.js + Sanity CMS</text>
+  <text x="590" y="490" text-anchor="middle" fill="#0f766e" font-family="system-ui" font-size="12">$47k jobs month 1 • Core Web Vitals</text>
+
+  <text x="400" y="570" text-anchor="middle" fill="#0f766e" font-family="system-ui" font-size="12" opacity="0.6">Demo Project — Replace with real client work</text>
+</svg>

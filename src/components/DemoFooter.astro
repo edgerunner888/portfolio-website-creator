@@ -1,0 +1,114 @@
+---
+interface Props {
+  businessName: string;
+  phone: string;
+  phoneHref: string;
+  email: string;
+  address: string;
+  licenseNumber?: string;
+  socialLinks?: { href: string; label: string; icon: string }[];
+}
+const {
+  businessName,
+  phone,
+  phoneHref,
+  email,
+  address,
+  licenseNumber,
+  socialLinks = [],
+} = Astro.props;
+const year = new Date().getFullYear();
+
+function getIcon(name: string) {
+  switch (name) {
+    case 'facebook':
+      return `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`;
+    case 'instagram':
+      return `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-.128-1.283-.073-1.69-.073-4.947 0-3.26.013-3.667.073-4.947.199-4.355 2.618-6.78 6.98-6.98 1.281-.058 1.69-.072 4.947-.072zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.354 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.78-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-.128-1.283-.073-1.69-.073-4.947 0-3.26.013-3.667.073-4.947.199-4.355 2.618-6.78 6.98-6.98 1.281-.058 1.69-.072 4.947-.072 3.26 0 3.667.014 4.947.072 4.355.199 6.78 2.618 6.98 6.98.058 1.28.072 1.689.072 4.948 0 3.259-.014 3.667-.072 4.947-.2 4.354-2.617 6.78-6.98 6.98-1.281.058-1.69.072-4.948.072-3.26 0-3.667-.014-4.947-.072-4.355-.199-6.78-2.618-6.98-6.98C15.668.013 15.26 0 12 0zm0 5.838a6.162 6.162 0 110 12.324 6.162 6.162 0 010-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 110 2.881 1.44 1.44 0 010-2.881z"/></svg>`;
+    case 'google':
+      return `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.327,0-6.033-2.706-6.033-6.032s2.706-6.032,6.033-6.032c1.602,0,3.028,0.623,4.017,1.621l2.583-2.581C17.914,1.647,15.366,0,12.545,0C7.033,0,2.546,4.487,2.546,10c0,5.514,4.488,10,10,10c8.477,0,10.321-7.185,9.897-10.067C22.217,5.793,19.75,4,16.671,4c-1.935,0-3.626,0.852-4.789,2.165L12.545,10.239z"/></svg>`;
+    case 'yelp':
+      return `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.533 10.916v.155c0 2.274-.557 5.176-1.672 8.286-.714 1.99-1.75 3.875-3.108 5.656-1.358 1.781-3.036 3.171-5.035 4.171-.866.432-1.627.794-2.282 1.088-1.528.682-3.078 1.173-4.651 1.477-1.574.303-3.11.455-4.606.455-2.857 0-5.217-.602-7.08-1.807-1.862-1.205-2.887-2.903-3.079-5.093-.19-2.19.264-5.49 1.362-9.901 1.097-4.41 2.944-7.878 5.539-10.403 2.594-2.524 5.843-3.787 9.746-3.787 2.707 0 5.17.562 7.385 1.687 2.215 1.125 3.903 2.772 5.064 4.94 1.16 2.168 1.74 4.777 1.74 7.828zM10.485 18.943c-2.291 0-4.277-1.282-4.979-3.846-.09-.329-.136-.659-.136-.99 0-2.964 1.337-5.78 4.011-8.447 2.674-2.668 6.354-4.001 11.037-4.001 3.285 0 6.167.763 8.647 2.288 1.756 1.052 3.105 2.582 4.047 4.587.943 2.005 1.414 4.395 1.414 7.168 0 .477-.077.952-.23 1.425-1.641 1.833-3.828 3.057-6.56 3.673-2.73.615-5.586.923-8.57.923zm8.867-6.823c-.427-2.271-1.875-4.089-4.344-5.455-2.468-1.365-5.348-2.049-8.64-2.049-3.093 0-5.845.627-8.257 1.881-1.922 1.003-3.454 2.439-4.594 4.308-1.14 1.868-1.71 4.147-1.71 6.837 0 1.549.282 3.077.845 4.583.563 1.506 1.349 2.934 2.358 4.285 2.279 3.038 6.513 4.556 10.58 4.556 3.332 0 6.189-.783 8.575-2.35.795-.526 1.558-1.113 2.287-1.762 2.384-2.116 3.576-4.852 3.576-8.208 0-.483-.078-.965-.233-1.447z"/></svg>`;
+    default:
+      return '';
+  }
+}
+---
+
+<footer class="bg-stone-900 text-stone-300" role="contentinfo">
+  <div class="demo-container demo-section">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <a href="/" class="flex items-center gap-2 mb-4" aria-label={`${businessName} - Home`}>
+          <span class="font-[Poppins] font-bold text-2xl text-white">{businessName}</span>
+        </a>
+        <p class="demo-body max-w-xs mb-6">
+          Licensed, insured, and trusted by the community. Quality workmanship guaranteed on every job.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="demo-trust-badge">Licensed & Insured</span>
+          <span class="demo-trust-badge">Free Estimates</span>
+          <span class="demo-trust-badge">Same-Day Service</span>
+          {licenseNumber && <span class="demo-trust-badge">Lic #{licenseNumber}</span>}
+        </div>
+      </div>
+
+      <nav aria-label="Services">
+        <h3 class="font-semibold text-white mb-4">Services</h3>
+        <ul class="space-y-3">
+          <li><a href="#services" class="hover:text-white transition-colors">All Services</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Emergency Service</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Maintenance Plans</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Free Estimates</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h3 class="font-semibold text-white mb-4">Contact Us</h3>
+        <address class="not-italic space-y-3 demo-body">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>{address}</span>
+          </div>
+          <a href="tel:{phoneHref}" class="flex items-center gap-3 hover:text-white transition-colors">
+            <svg class="w-5 h-5 flex-shrink-0 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span>{phone}</span>
+          </a>
+          <a href="mailto:{email}" class="flex items-center gap-3 hover:text-white transition-colors">
+            <svg class="w-5 h-5 flex-shrink-0 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>{email}</span>
+          </a>
+        </address>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-stone-800 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-stone-500">
+        © {year} {businessName}. All rights reserved.
+      </p>
+      <div class="flex items-center gap-6">
+        {socialLinks.map((social) => (
+          <a
+            href={social.href}
+            class="text-stone-400 hover:text-white transition-colors"
+            aria-label={social.label}
+            target="_blank"
+            rel="noopener noreferrer"
+            set:html={getIcon(social.icon)}
+          >
+          </a>
+        ))}
+      </div>
+      <p class="text-sm text-stone-500">
+        Demo site by <a href="https://yourname.dev" class="text-orange-400 hover:underline" target="_blank" rel="noopener">Joey Viola</a> — <span class="text-orange-400 font-medium">Every site we build is 100% customized to your brand, services, and customers. No two sites look the same.</span>
+      </p>
+    </div>
+  </div>
+</footer>
