@@ -1,9 +1,9 @@
 ---
 interface Props {
   email: string;
-  formEndpoint?: string;
 }
-const { email, formEndpoint = 'https://formspree.io/f/your-form-id' } = Astro.props;
+const { email } = Astro.props;
+const formEndpoint = import.meta.env.FORMSPREE_ENDPOINT || 'https://formspree.io/f/your-form-id';
 ---
 
 <section id="contact" class="section bg-slate-50" aria-labelledby="contact-heading">
